@@ -25,7 +25,7 @@ alias uicoretest="uicore; rushx test"
 alias uirmnodemodules="cd $uipath/common/temp; rm -r node_modules"
 alias uilint='uicore; rushx lint-style-fix;  rushx lint-fix; rushx prettier; rushx format'
 alias uitest='uicore; rushx test'
-alias uicorserve='uicore; rushx serve' # this runs local glint ui through angular with hot reloading
+alias uicoreserve='uicore; rushx serve' # this runs local glint ui through angular with hot reloading
 
 function uirun() {
     tmux has-session -t uirun && tmux kill-session -t uirun;
