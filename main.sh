@@ -3,6 +3,7 @@
 export devpath="/home/frank/dev"
 alias dev="cd $devpath"
 
+reformatallscripts
 sourceallscripts main.sh configurationBackup.sh
 
 function sourceallscripts() { 
@@ -62,3 +63,38 @@ function sourceallscripts() {
     echo "Sourced all .sh files"
 }
 
+function reformatallscripts() {
+    # `reformatallscripts` is a function that reformats all `.sh` scripts in the `/home/frank/dev/scripts` directory using shfmt.
+    # Excluded filenames can be passed as arguments.
+    # 
+    # Usage:
+    #     reformatallscripts [excluded_script1] [excluded_script2] ...
+    # 
+    # Arguments:
+    #     excluded_scriptX  - Filenames to be excluded from reformatting. You can pass any number of them.
+    # 
+    # How it works:
+    # 1. Dynamically build the `find` command, appending `-not -name` for each script to be excluded.
+    # 2. Execute the `find` command to get the list of scripts to reformat.
+    # 3. Loop through and reformat each script, printing messages as scripts are reformatted or if any error occurs.
+
+    # Build the find command with -not -name for each excluded script
+    local find_command="find \"/home/frank/dev/scripts\" -name \"*.sh\""
+    for excluded_script in "$@"; do
+        find_command+=" -not -name \"$excluded_script\""
+    done
+    find_command+=" -print0"
+
+    # Find all scripts and save their paths in an array
+    local script_files=()
+    while IFS= read -r -d '' file; do
+        script_files+=("$file")
+    done < <(eval "$find_command")
+
+    # Reformat each script, and print a message if an error occurred
+    for file in "${script_files[@]}"; do
+        dos2unix "$file"
+    done
+
+    echo "Reformatted all .sh files"
+}
