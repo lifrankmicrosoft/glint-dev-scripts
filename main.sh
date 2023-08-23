@@ -3,6 +3,7 @@
 export devpath="/home/frank/dev"
 alias dev="cd $devpath"
 
+source "./wsl/sourceing.sh"
 reformatallscripts
 sourceallscripts main.sh configurationBackup.sh
 
@@ -31,7 +32,7 @@ function sourceallscripts() {
     fi
 
     # Build the find command with -not -name for each excluded script
-    local find_command="find \"/home/frank/dev/scripts\" -name \"*.sh\""
+    local find_command="find \"$current_directory\" -name \"*.sh\""
     for excluded_script in "$@"; do
         find_command+=" -not -name \"$excluded_script\""
     done
@@ -79,7 +80,7 @@ function reformatallscripts() {
     # 3. Loop through and reformat each script, printing messages as scripts are reformatted or if any error occurs.
 
     # Build the find command with -not -name for each excluded script
-    local find_command="find \"/home/frank/dev/scripts\" -name \"*.sh\""
+    local find_command="find \"$current_directory\" -name \"*.sh\""
     for excluded_script in "$@"; do
         find_command+=" -not -name \"$excluded_script\""
     done
