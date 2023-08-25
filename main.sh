@@ -1,11 +1,7 @@
+function scripts(){
+    cd $glintscriptspath
+}
 
-# central config  =====================================================
-export devpath="/home/frank/dev"
-alias dev="cd $devpath"
-
-source "./wsl/sourceing.sh"
-reformatallscripts
-sourceallscripts main.sh configurationBackup.sh
 
 function sourceallscripts() { 
     # `sourceallscripts` is a function that sources all `.sh` scripts in the `/home/frank/dev/scripts` directory.
@@ -32,7 +28,7 @@ function sourceallscripts() {
     fi
 
     # Build the find command with -not -name for each excluded script
-    local find_command="find \"$current_directory\" -name \"*.sh\""
+    local find_command="find \"$glintscriptspath\" -name \"*.sh\""
     for excluded_script in "$@"; do
         find_command+=" -not -name \"$excluded_script\""
     done
@@ -80,7 +76,7 @@ function reformatallscripts() {
     # 3. Loop through and reformat each script, printing messages as scripts are reformatted or if any error occurs.
 
     # Build the find command with -not -name for each excluded script
-    local find_command="find \"$current_directory\" -name \"*.sh\""
+    local find_command="find \"$glintscriptspath\" -name \"*.sh\""
     for excluded_script in "$@"; do
         find_command+=" -not -name \"$excluded_script\""
     done
@@ -99,3 +95,6 @@ function reformatallscripts() {
 
     echo "Reformatted all .sh files"
 }
+
+reformatallscripts
+sourceallscripts main.sh configurationBackup.sh
