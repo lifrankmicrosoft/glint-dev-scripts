@@ -18,6 +18,10 @@
 # export sqlqahost=""
 # export sqlqapassword=""
 
+# path to main dev folder
+export devpath="/home/frank/dev"
+alias dev="cd $devpath"
+
 # Paths to your projects
 export bepath="$devpath/ado/VGbackend/sources/dev" # path to ADO backend 
 export uipath="$devpath/ado/VGui" # path to ADO frontend 
