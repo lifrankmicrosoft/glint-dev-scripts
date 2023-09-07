@@ -30,7 +30,7 @@ function apiserverdoit() {
 
 
 
-function bebuild() {
+function bebuildinner() {
     local start end duration_minutes duration_seconds total_seconds
 
     start=$(date +%s)  # Get the start time in seconds since the Unix epoch.
@@ -46,6 +46,10 @@ function bebuild() {
     duration_seconds=$((total_seconds % 60))
 
     echo "Execution time for bebuild : $duration_minutes minutes $duration_seconds seconds"
+}
+
+function bebuild(){
+  measuretime bebuildinner
 }
 alias m2="sudo nano ~/.m2/settings.xml"
 

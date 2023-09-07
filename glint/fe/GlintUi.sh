@@ -22,13 +22,13 @@ function uimtinstallinner(){
     ui; node common/scripts/install-run-rush install 
 }
 function uimtinstall() {
-    measure_time uimtinstallinner
+    measuretime uimtinstallinner
 }
 function uimtbuildinner() {
     ui; node common/scripts/install-run-rush install
 }
 function uimtbuild() {
-    measure_time uimtbuildinner
+    measuretime uimtbuildinner
 }
 
 alias uimtbuild="ui; uimtinstall; node common/scripts/install-run-rush build; uifixturebuild"

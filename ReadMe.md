@@ -4,6 +4,7 @@
   - [Backend](#backend)
   - [Frontend](#frontend)
   - [WSL Commands](#wsl-commands)
+  - [Git helpers](#git-helpers)
 
 
 # Team Delta Glint Dev scripts
@@ -86,3 +87,8 @@ source ~/dev/scripts/main.sh # Since this is the location of this repo.
 | `takedownide`            | Kills any running IntelliJ IDEA processes.                                                                                                                    |
 | `takedowngithubdesktop`  | Kills any running GitHub Desktop processes.                                                                                                                   |
 | `takedownwebstorm`       | Kills any running WebStorm processes.                                                                                                                         |
+
+## Git helpers
+| Command                  | Description                                                                                                                                                   |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `gitfetchall`                | gets all the branches available from remote                                                                                                          |
