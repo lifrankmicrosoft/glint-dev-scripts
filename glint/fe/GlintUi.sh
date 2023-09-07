@@ -42,9 +42,6 @@ alias uicoreserve='uicore; rushx serve' # this runs local glint ui through angul
 function uicoretestinner() { uicore; rushx test; }
 function uicoretest() { measuretime uicoretestinner; }
 
-function uitestinner() { uicore; rushx test; }
-function uitest() { measuretime uitestinner; }
-
 function uilintinner() { uicore; rushx lint-style-fix; rushx lint-fix; rushx prettier; rushx format; }
 function uilint() { measuretime uilintinner; }
 

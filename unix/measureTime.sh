@@ -31,3 +31,7 @@ function measuretime() {
 function checkbuildtimes(){
     cat ~/.buildTime.txt;
 }
+
+function measureallbuilds(){
+    bebuild; uimtinstall; uimtbuild; uimtrun; uimttest; uicoretest; uilint; uitestall
+}
