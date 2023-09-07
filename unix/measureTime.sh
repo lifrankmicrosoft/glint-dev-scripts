@@ -29,7 +29,7 @@ function measuretime() {
 
 
 function checkbuildtimes(){
-    cat ~/.buildTime.txt;
+    cat ~/buildTime.txt;
 }
 
 function measureallbuilds(){
