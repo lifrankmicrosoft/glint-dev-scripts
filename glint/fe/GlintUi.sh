@@ -18,31 +18,38 @@ alias uifixturebuild="uifixture; rushx build"
 # UI Middletier
 alias uimtconfig="cd $uimt/config"
 
-function uimtinstallinner(){ 
-    ui; node common/scripts/install-run-rush install 
-}
-function uimtinstall() {
-    measuretime uimtinstallinner
-}
-function uimtbuildinner() {
-    ui; node common/scripts/install-run-rush install
-}
-function uimtbuild() {
-    measuretime uimtbuildinner
-}
+function uimtinstallinner(){ ui; node common/scripts/install-run-rush install }
+function uimtinstall() { measuretime uimtinstallinner }
 
-alias uimtbuild="ui; uimtinstall; node common/scripts/install-run-rush build; uifixturebuild"
+function uimtbuildinner() { ui; node common/scripts/install-run-rush install }
+function uimtbuild() { measuretime uimtbuildinner }
 
-alias uimtrun="takedownuimt; uimt; rushx start"
-alias uimttest='uimt; rushx test'
+
+function uimtruninner() { takedownuimt; uimt; rushx start; }; 
+function uimtrun() { measuretime uimtruninner; }
+
+
+function uimttestinner(){ uimt; rushx test }
+function uimttest(){ measuretime; uimttestinner }
+
 
 # UI Core (Glint UI)
 alias uicorewatch="uicore; rushx watch:ui"
-alias uicoretest="uicore; rushx test"
+
 alias uirmnodemodules="cd $uipath/common/temp; rm -r node_modules"
-alias uilint='uicore; rushx lint-style-fix;  rushx lint-fix; rushx prettier; rushx format'
-alias uitest='uicore; rushx test'
 alias uicoreserve='uicore; rushx serve' # this runs local glint ui through angular with hot reloading
+
+function uicoretestinner() { uicore; rushx test; }
+function uicoretest() { measuretime uicoretestinner; }
+
+function uitestinner() { uicore; rushx test; }
+function uitest() { measuretime uitestinner; }
+
+function uilintinner() { uicore; rushx lint-style-fix; rushx lint-fix; rushx prettier; rushx format; }
+function uilint() { measuretime uilintinner; }
+
+function uitestallinner() { uimtbuild && uimttest && uitest; }
+function uitestall() { measuretime uitestallinner; }
 
 function uirun() {
     tmux has-session -t uirun && tmux kill-session -t uirun;
@@ -57,7 +64,7 @@ function uirun() {
     attach-session -d
 }
 
-alias uitestall='uimtbuild && uimttest && uitest'
+
 alias uipr='uilint && uitestall' # running this before creating PR will detect issues early on
 
 
