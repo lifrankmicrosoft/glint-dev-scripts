@@ -13,3 +13,9 @@ function gitfetchall() {
   # Switch back to the original branch
   git checkout $current_branch
 }
+
+function gitquick(){
+    git add .;
+    git commit -m "WIP"
+    git push;
+}

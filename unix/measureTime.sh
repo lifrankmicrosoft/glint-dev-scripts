@@ -33,5 +33,5 @@ function checkbuildtimes(){
 }
 
 function measureallbuilds(){
-    bebuild; uimtinstall; uimtbuild; uimtrun; uimttest; uicoretest; uilint; uitestall
+    bebuild; uimtinstall; uimtbuild; uimtrun; uimttest; uicoretest; uilint; uitestall; checkbuildtimes
 }
