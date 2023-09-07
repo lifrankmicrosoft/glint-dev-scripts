@@ -3,6 +3,9 @@ uimtpath="$uipath/sources/dev/middle-tier"
 uicorepath="$uipath/sources/dev/core"
 uifixturepath="$uipath/sources/dev/strings"
 
+export NODE_ENV='local'
+
+
 # UI go to shortcuts
 alias ui="cd $uipath"
 alias uimt="cd $uimtpath"
@@ -14,8 +17,22 @@ alias uifixturebuild="uifixture; rushx build"
 
 # UI Middletier
 alias uimtconfig="cd $uimt/config"
-alias uimtinstall="ui; node common/scripts/install-run-rush install"
+
+function uimtinstallinner(){ 
+    ui; node common/scripts/install-run-rush install 
+}
+function uimtinstall() {
+    measure_time uimtinstallinner
+}
+function uimtbuildinner() {
+    ui; node common/scripts/install-run-rush install
+}
+function uimtbuild() {
+    measure_time uimtbuildinner
+}
+
 alias uimtbuild="ui; uimtinstall; node common/scripts/install-run-rush build; uifixturebuild"
+
 alias uimtrun="takedownuimt; uimt; rushx start"
 alias uimttest='uimt; rushx test'
 
