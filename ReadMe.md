@@ -5,6 +5,7 @@
   - [Frontend](#frontend)
   - [WSL Commands](#wsl-commands)
   - [Git helpers](#git-helpers)
+- [Backing up your WSL](#backing-up-your-wsl)
 
 
 # Team Delta Glint Dev scripts
@@ -92,3 +93,13 @@ source ~/dev/scripts/main.sh # Since this is the location of this repo.
 | Command                  | Description                                                                                                                                                   |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `gitfetchall`                | gets all the branches available from remote                                                                                                          |
+
+# Backing up your WSL
+```
+wsl.exe --export Ubuntu ubuntu_backup.tar
+```
+
+for example
+```
+wsl.exe --export frankwsl  C:\Users\lifrank\frankwsl.tar
+```

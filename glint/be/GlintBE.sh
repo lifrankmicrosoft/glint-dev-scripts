@@ -31,21 +31,9 @@ function apiserverdoit() {
 
 
 function bebuildinner() {
-    local start end duration_minutes duration_seconds total_seconds
-
-    start=$(date +%s)  # Get the start time in seconds since the Unix epoch.
-
     be
     mvn clean
     mvn install -DskipTests -Dspotbugs.skip=true -e -X
-
-    end=$(date +%s)  # Get the end time in seconds since the Unix epoch.
-    total_seconds=$((end - start))
-    
-    duration_minutes=$((total_seconds / 60))
-    duration_seconds=$((total_seconds % 60))
-
-    echo "Execution time for bebuild : $duration_minutes minutes $duration_seconds seconds"
 }
 
 function bebuild(){
