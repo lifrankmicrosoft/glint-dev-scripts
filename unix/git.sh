@@ -19,3 +19,10 @@ function gitquick(){
     git commit -m "WIP"
     git push;
 }
+
+function gitscriptupdate(){
+  scripts;
+  git pull;
+  fsource;
+  echo "Scripts pulled and updated."
+}
