@@ -7,28 +7,6 @@ alias be="cd $bepath"
 export glintEngineeringPath="$bepath/GlintEngineering"
 export glintClassPath="$bepath/target"
 
-# Api Server
-export apiServerPath="$bepath/awareai-api-server"
-alias apiserver="cd $apiServerPath"
-function apiserverdoit() {
-  startallservices;
-  takedownsputnik;
-  apiserver;
-
-  /usr/lib/jvm/java-8-openjdk-amd64/bin/java \
-    -Dpom.version=1.0 \
-    -XX:+HeapDumpOnOutOfMemoryError \
-    -javaagent:/home/$USER/.m2/repository/org/eclipse/persistence/eclipselink/2.7.3/eclipselink-2.7.3.jar \
-    -DcredentialsDir=/GlintEngineering/resources \
-    -Drealm=local \
-    -Dconsole.log=true \
-    -Daws.s3FileUploadsUrl=mysql \
-    -Dfile.encoding=UTF-8 \
-    -classpath /tmp/frankglint.jar \
-    com.awareai.rest.SputnikServer
-}
-
-
 
 function bebuildinner() {
     be
@@ -57,3 +35,23 @@ alias betakedown="takedownsputnik; takedownworkflow"
 
 alias takedownall="betakedown; uitakedown"
 
+# Api Server
+export apiServerPath="$bepath/awareai-api-server"
+alias apiserver="cd $apiServerPath"
+function apiserverdoit() {
+  startallservices;
+  takedownsputnik;
+  apiserver;
+
+  /usr/lib/jvm/java-8-openjdk-amd64/bin/java \
+    -Dpom.version=1.0 \
+    -XX:+HeapDumpOnOutOfMemoryError \
+    -javaagent:/home/$USER/.m2/repository/org/eclipse/persistence/eclipselink/2.7.3/eclipselink-2.7.3.jar \
+    -DcredentialsDir=/GlintEngineering/resources \
+    -Drealm=local \
+    -Dconsole.log=true \
+    -Daws.s3FileUploadsUrl=mysql \
+    -Dfile.encoding=UTF-8 \
+    -classpath /tmp/frankglint.jar \
+    com.awareai.rest.SputnikServer
+}

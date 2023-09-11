@@ -5,6 +5,7 @@
 # export NPM_USERNAME=
 
 # ADO Pat Tokens
+#export MAVEN_PAT=
 # export BASICAUTH_PAT=
 # export MSFT_PAT=
 

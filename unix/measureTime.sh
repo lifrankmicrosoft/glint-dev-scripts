@@ -2,22 +2,28 @@ function measuretime() {
     local start end duration_minutes duration_seconds total_seconds log_file
 
     start=$(date +%s)  # Get the start time in seconds since the Unix epoch.
-    
+
     echo "Running function: $1"  # Echoes the name of the function being run.
 
     echo "About to run function: $1"
-    "$@"  # Executes the passed function and its arguments.
+    
+    # Capture errors and cancellations
+    if ! "$@"; then
+        echo "Error occurred or operation was cancelled. Not logging total build time."
+        return 1
+    fi
+    
     echo "Finished running function: $1"
 
     end=$(date +%s)  # Get the end time in seconds since the Unix epoch.
     total_seconds=$((end - start))
-    
+
     duration_minutes=$((total_seconds / 60))
     duration_seconds=$((total_seconds % 60))
 
     log_msg="Execution time for $1: $duration_minutes minutes $duration_seconds seconds"
     echo $log_msg
-    
+
     log_file=~/buildTime.txt
 
     # Check if ~/buildTime.txt exists, and append or create and append as necessary.
@@ -30,8 +36,8 @@ function measuretime() {
 }
 
 
-function checkbuildtimes(){
-    cat ~/buildTime.txt;
+function allbuildtimes(){
+    code ~/buildTime.txt;
 }
 
 function avgbuildtimes() {

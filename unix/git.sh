@@ -19,7 +19,3 @@ function gitquick(){
     git commit -m "WIP"
     git push;
 }
-
-function gitclean(){
-  
-}
